@@ -4,8 +4,6 @@ const fs = require('fs');
 const options = require('./utils/argChecker');
 const caesar = require('./utils/streamTransform');
 
-console.log(options);
-
 let steamIn = process.stdin;
 let streamOut = process.stdout;
 
@@ -35,12 +33,8 @@ if (options.output !== undefined) {
 
 pipeline(steamIn, caesar.encoder(options.shift), streamOut, (err) => {
   if (err) {
-    // console.error('Pipeline failed', err);
+    console.error('Unexpected error', err);
   } else {
-    console.log(options.action + ' succeeded');
+    console.log(options.action + ' succeeded!');
   }
-});
-
-process.on('exit', (code) => {
-  console.log(`About to exit with code: ${code}`);
 });
