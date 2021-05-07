@@ -12,7 +12,7 @@ if (options.input !== undefined) {
 
   steamIn.on('error', (err) => {
     console.error(
-      'Input file error because of permissions or no such file or directory'
+      'Input file error because no permission or no such file or directory'
     );
     process.exit(1);
   });
@@ -25,7 +25,7 @@ if (options.output !== undefined) {
 
   streamOut.on('error', (err) => {
     console.error(
-      'Output file error because of permissions or no such file or directory'
+      'Output file error because no permission or no such file or directory'
     );
     process.exit(1);
   });
