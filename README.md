@@ -2,53 +2,68 @@
 
 #### CLI tool that will encode and decode a text by Caesar cipher.
 
-**CLI tool accept 4 options:**
+### Config
 
-> #### **-s, --shift**: a shift
->
-> #### **-i, --input**: an input file
->
-> #### **-o, --output**: an output file
->
-> #### **-a, --action**: an action encode/decode
+    node 14.16.0
+    NPM: 6.14.11
 
-**Usage example:**
+### Instalation
 
-1. _-a (--action)_ is **encode**
+      npm install
 
-```bash
-$ node my_caesar_cli -a encode -s 7 -i "./input.txt" -o "./output.txt"
+### CLI tool accept 5 options:
+
+    -s, --shift: shift an integer
+    -a, --action:  action - encode/decode
+    -i, --input: an input file
+    -o, --output: an output file
+    -h, --help: show all options
+
+### Usage case:
+
+1. Encoding _-a (--action)_ **encode** from file _-i (--input)_ **input.txt** to file _-o, (--output)_ **output.txt** with _-s (--shift)_ **7**
+
+```
+$ node index -a encode -s 7 -i "./input.txt" -o "./output.txt"
 ```
 
-> input.txt
+Text in - input.txt
+
 > `This is secret. Message about "_" symbol!`
-> output.txt
+
+Result in - output.txt
+
 > `Aopz pz zljyla. Tlzzhnl hivba "_" zftivs!`
 
-```bash
-$ node my_caesar_cli --action encode --shift 7 --input plain.txt --output encoded.txt
-```
-
-> plain.txt
-> `This is secret. Message about "_" symbol!`
-> encoded.txt
-> `Aopz pz zljyla. Tlzzhnl hivba "_" zftivs!` 2. _-a (--action)_ is **decode**  
-> _Decoding encoded initial string with the same -s(--shift) number produces the initial string._
+2. Decoding _-a (--action)_ **decode**  
+   _Decoding encoded initial string with the same -s(--shift) number produces the initial string._
 
 ```bash
-$ node my_caesar_cli --action decode --shift 7 --input encoded.txt --output plain.txt
+$ node index --action decode --shift 7 --input encoded.txt --output plain.txt
 ```
 
-> encoded.txt
+encoded.txt
+
 > `Aopz pz zljyla. Tlzzhnl hivba "_" zftivs!`
-> plain.txt
-> `This is secret. Message about "_" symbol!` 3. _(Optional) Negative shift handling_
+
+plain.txt
+
+> `This is secret. Message about "_" symbol!`
+
+3. Encode or Decode text from command line to file.
 
 ```bash
-$ node my_caesar_cli --action encode --shift -1 --input plain.txt --output encoded.txt
+$ node index --action decode --shift 7  --output output.txt
 ```
 
-> plain.txt
-> `This is secret. Message about "_" symbol!`
-> encoded.txt
-> `Sghr hr rdbqds. Ldrrzfd zants "_" rxlank!`
+4. Encode or Decode text from file to command line.
+
+```bash
+$ node index --action encode -i input.txt --shift 7
+```
+
+5. Encode or Decode text in command line on the fly.
+
+```bash
+$ node index -a encode -s 77
+```
