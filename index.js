@@ -7,13 +7,13 @@ const caesar = require('./utils/streamTransform');
 let steamIn = process.stdin;
 let streamOut = process.stdout;
 
+const fsErrorMsg = 'you have not permission or wrong path to file';
+
 if (options.input !== undefined) {
   steamIn = fs.createReadStream(options.input);
 
   steamIn.on('error', (err) => {
-    console.error(
-      'Input file error because no permission or no such file or directory'
-    );
+    console.error('error: with input file ' + fsErrorMsg);
     process.exit(1);
   });
 }
@@ -24,9 +24,7 @@ if (options.output !== undefined) {
   });
 
   streamOut.on('error', (err) => {
-    console.error(
-      'Output file error because no permission or no such file or directory'
-    );
+    console.error('error: with output file ' + fsErrorMsg);
     process.exit(1);
   });
 }
