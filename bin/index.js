@@ -1,8 +1,10 @@
+#!/usr/bin/env node
+
 const { pipeline } = require('stream');
 const fs = require('fs');
 
-const options = require('./utils/argChecker');
-const caesar = require('./utils/streamTransform');
+const options = require('../utils/argChecker');
+const caesar = require('../utils/streamTransform');
 
 let steamIn = process.stdin;
 let streamOut = process.stdout;

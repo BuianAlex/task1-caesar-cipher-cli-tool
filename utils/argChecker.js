@@ -19,12 +19,12 @@ program
   .description('Caesar cipher tool')
   .requiredOption('-s, --shift <number>', 'shift - an integer', checkShift)
   .requiredOption(
-    '-a, --action <string>',
+    '-a, --action <encode/decode>',
     'action - encode/decode',
     checkAction
   )
-  .option('-i, --input <string>', 'input file path')
-  .option('-o, --output <string>', 'output file path');
+  .option('-i, --input <path to file>', 'input file path')
+  .option('-o, --output <path to file>', 'output file path');
 
 program.parse();
 
