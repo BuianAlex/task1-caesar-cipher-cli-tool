@@ -2,7 +2,7 @@
   "name": "task1-caesar-cipher-cli-tool",
   "version": "1.0.0",
   "description": "caesar cipher cli tool",
-  "main": "index.js",
+  "main": "./bin/index.js",
   "bin": {
     "caesar-cli": "./bin/index.js"
   },

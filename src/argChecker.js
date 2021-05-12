@@ -1,3 +1,6 @@
+const fs = require('fs');
+const { EOL } = require('os');
+
 const { program } = require('commander');
 
 const checkShift = (value) => {
@@ -15,6 +18,25 @@ const checkAction = (value) => {
   return value;
 };
 
+const validateFile = (pathFile) => {
+  if (fs.existsSync(pathFile)) {
+    const isFile = fs.statSync(pathFile).isFile();
+    if (!isFile) {
+      throw new program.InvalidOptionArgumentError(`Is not a file!`);
+    }
+    try {
+      fs.accessSync(pathFile, fs.constants.R_OK | fs.constants.W_OK);
+    } catch (err) {
+      throw new program.InvalidOptionArgumentError(
+        `Cannot access to the file!`
+      );
+    }
+  } else {
+    throw new program.InvalidOptionArgumentError(`File doesn't found!`);
+  }
+  return pathFile;
+};
+
 program
   .description('Caesar cipher tool')
   .requiredOption('-s, --shift <number>', 'shift - an integer', checkShift)
@@ -23,8 +45,8 @@ program
     'action - encode/decode',
     checkAction
   )
-  .option('-i, --input <path to file>', 'input file path')
-  .option('-o, --output <path to file>', 'output file path');
+  .option('-i, --input <path to file>', 'input file path', validateFile)
+  .option('-o, --output <path to file>', 'output file path', validateFile);
 
 program.parse();
 
@@ -32,7 +54,7 @@ const options = program.opts();
 
 if (options.action !== 'encode' && options.action !== 'decode') {
   process.stderr.write(
-    'error: Argument - action should be encode or decode.\n\n'
+    `error: Argument - action should be encode or decode.${EOL}`
   );
   program.help({ error: true });
 }

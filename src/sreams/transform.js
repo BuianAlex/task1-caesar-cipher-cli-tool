@@ -1,6 +1,6 @@
 const { Transform } = require('stream');
 
-const caesar = require('./caesar');
+const caesar = require('../caesar');
 
 const encoder = (shift) => {
   return new Transform({
