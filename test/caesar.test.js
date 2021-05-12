@@ -5,6 +5,7 @@ const caesar = require('./../utils/caesar');
 describe('Test encrypt string', function () {
   it('encrypt - qwerty to vbjwd with shift 5', function () {
     const result = caesar('qwerty', 5);
+    console.log(result);
     expect(result).to.equal('vbjwyd');
   });
 
@@ -51,11 +52,24 @@ describe('Test encrypt-decrypt string', function () {
     const decryptedString = caesar(encryptedString, -26);
     expect(decryptedString).to.equal(sourceString);
   });
-
   it('encrypt and after decrypt string with shift 28', function () {
     const sourceString = `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`;
     const encryptedString = caesar(sourceString, 28);
     const decryptedString = caesar(encryptedString, -28);
+    expect(decryptedString).to.equal(sourceString);
+  });
+
+  it('encrypt and after decrypt string with shift -52', function () {
+    const sourceString = `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`;
+    const encryptedString = caesar(sourceString, -52);
+    const decryptedString = caesar(encryptedString, 52);
+    expect(decryptedString).to.equal(sourceString);
+  });
+
+  it('encrypt and after decrypt string with shift 0', function () {
+    const sourceString = `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`;
+    const encryptedString = caesar(sourceString, 0);
+    const decryptedString = caesar(encryptedString, 0);
     expect(decryptedString).to.equal(sourceString);
   });
 });
