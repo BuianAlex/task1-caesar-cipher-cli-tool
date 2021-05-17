@@ -2,4 +2,4 @@
 
 const options = require('../src/argChecker');
 
-require('../src/sreams/caesarStream')(options);
+require('../src/streams')(options);
